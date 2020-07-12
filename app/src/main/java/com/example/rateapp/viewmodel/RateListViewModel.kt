@@ -6,6 +6,7 @@ import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rateapp.RateConstants.Companion.PREFS_TIME
+import com.example.rateapp.model.raterepository.RateListModel
 import com.example.rateapp.model.raterepository.RateModel
 import com.example.rateapp.model.raterepository.dao.RateDao
 import com.example.rateapp.model.raterepository.service.RateApiService
@@ -26,7 +27,7 @@ class RateListViewModel(private val rateApiService: RateApiService,
 
 
 
-    val rates = MutableLiveData<List<RateModel>>()
+    val rates = MutableLiveData<RateListModel>()
     val ratesLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -57,8 +58,8 @@ class RateListViewModel(private val rateApiService: RateApiService,
             rateApiService.getRateList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<List<RateModel>>(){
-                    override fun onSuccess(rateList: List<RateModel>) {
+                .subscribeWith(object: DisposableSingleObserver<RateListModel>(){
+                    override fun onSuccess(rateList: RateListModel) {
                         storeRatesLocal(rateList)
                         notificationsHelper.createNotification()
                     }
@@ -73,26 +74,27 @@ class RateListViewModel(private val rateApiService: RateApiService,
         )
     }
 
-    private suspend fun ratesRetrieved(ratesList: List<RateModel>) {
+    private suspend fun ratesRetrieved(rate: List<RateModel>) {
         viewModelScope.launch {
             rateDao.getAllRates()
             val result = rateDao.getAllRates()
-            rates.value = ratesList
+            val tempRatesListModel = RateListModel(rate)
+            rates.value = tempRatesListModel
             ratesLoadError.value = false
             loading.value = false
         }
     }
 
-    private fun storeRatesLocal(list: List<RateModel>){
+    private fun storeRatesLocal(list: RateListModel){
         viewModelScope.launch {
             rateDao.deleteAllRates()
-            val result = rateDao.insertAll(*list.toTypedArray())
+            val result = list.rateListModel.toTypedArray().let { rateDao.insertAll(*it) }
             var i = 0
-            while(i<list.size){
-                list[i].id = result[i].toInt()
+            while(i<list.rateListModel.size){
+                list.rateListModel[i].id = result[i].toInt()
                 i++
             }
-            ratesRetrieved(list)
+            ratesRetrieved(list.rateListModel)
         }
 
         timeSharedPreferences.edit(commit = true){ putLong(PREFS_TIME, System.nanoTime()) }

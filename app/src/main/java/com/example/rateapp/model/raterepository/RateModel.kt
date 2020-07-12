@@ -25,3 +25,11 @@ data class RateModel(
     @SerializedName("type")
     var type: String?
 )
+
+
+data class RateListModel(
+
+    @SerializedName("listLocations")
+    var rateListModel: List<RateModel>
+
+)

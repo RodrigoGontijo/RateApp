@@ -59,7 +59,7 @@ class RateListFragment  : Fragment() {
         viewModel.rates.observe(this, Observer {
             it?.let {
                 rateList.visibility = View.VISIBLE
-                ratesListAdapter.updateRateList(it)
+                ratesListAdapter.updateRateList(it.rateListModel)
             }
         })
 
