@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="rate"
             type="com.example.rateapp.model.raterepository.RateModel" />
@@ -12,51 +14,90 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginBottom="4dp"
-        android:orientation="horizontal"
-        android:onClick="@{listener::onItemRateClick}">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/rateId"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@{String.valueOf(rate.id)}"
-            />
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/white"
+            android:elevation="10dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="8dp">
 
-<!--        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:imageUrl="@{rate.imageUrl}"
-            android:padding="4dp" />-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="4dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/place_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="center"
+                    android:maxHeight="150dp"
+                    android:imageUrl="@{rate.imagesRandom}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/place_name"
+                    android:layout_below="@+id/place_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{rate.name}"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <!--    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:onClick="@{listener::onItemRateClick}">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/rateId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Title"
-                android:text="@{rate.name}"/>
+                android:visibility="gone"
+                android:text="@{String.valueOf(rate.id)}"
+                />
 
-            <TextView
-                android:id="@+id/review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Title"
-                android:text="@{rate.review}"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:imageUrl="@{rate.imageUrl}"
+                android:padding="4dp" />
 
-        </LinearLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Title"
+                    android:text="@{rate.name}"/>
+
+                <TextView
+                    android:id="@+id/review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Title"
+                    android:text="@{rate.review}"/>
+
+            </LinearLayout>
+        </LinearLayout>-->
 </layout>

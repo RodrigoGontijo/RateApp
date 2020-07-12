@@ -12,11 +12,13 @@ import com.example.rateapp.model.raterepository.RateModel
 import kotlinx.android.synthetic.main.fragment_rate_details.view.*
 
 
-class RateListAdapter (val rateList: ArrayList<RateModel>) : RecyclerView.Adapter<RateListAdapter.RateListViewHolder>(), RateItemClickListener{
+class RateListAdapter(val rateList: ArrayList<RateModel>) :
+    RecyclerView.Adapter<RateListAdapter.RateListViewHolder>(), RateItemClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RateListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<ItemRateBinding>(inflater, R.layout.item_rate, parent, false)
+        val view =
+            DataBindingUtil.inflate<ItemRateBinding>(inflater, R.layout.item_rate, parent, false)
         return RateListViewHolder(view)
     }
 
@@ -34,7 +36,7 @@ class RateListAdapter (val rateList: ArrayList<RateModel>) : RecyclerView.Adapte
         Navigation.findNavController(v).navigate(action)
     }
 
-    fun updateRateList(newRateList : List<RateModel>){
+    fun updateRateList(newRateList: List<RateModel>) {
         rateList.clear()
         rateList.addAll(newRateList)
         notifyDataSetChanged()
