@@ -1,0 +1,35 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rate_navigation"
+    app:startDestination="@id/rateListFragment">
+
+    <fragment
+        android:id="@+id/rateListFragment"
+        android:name="com.example.rateapp.view.RateListFragment"
+        android:label="RateListFragment" >
+        <action
+            android:id="@+id/actionDetailFragment"
+            app:destination="@+id/rateDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/rateDetailsFragment"
+        android:name="com.example.rateapp.view.RateDetailsFragment"
+        android:label="RateDetailsFragment">
+        <action
+            android:id="@+id/actionListFragment"
+            app:destination="@id/rateListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/rateListFragment"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="rateId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>
