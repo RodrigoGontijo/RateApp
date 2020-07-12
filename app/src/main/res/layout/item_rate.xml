@@ -47,6 +47,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@{rate.name}"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="200dp"
+                    android:numStars="5"
+                    android:rating="@{rate.review}"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

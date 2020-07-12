@@ -19,7 +19,7 @@ data class RateModel(
 
     @ColumnInfo(name = "review")
     @SerializedName("review")
-    var review: String?,
+    var review: Float?,
 
     @ColumnInfo(name = "type")
     @SerializedName("type")
