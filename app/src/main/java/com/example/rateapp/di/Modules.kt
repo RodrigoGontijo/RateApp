@@ -1,11 +1,11 @@
 package com.example.rateapp.di
 
-import RateConstants.Companion.BASE_URL
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
+import com.example.rateapp.RateConstants.Companion.BASE_URL
 import com.example.rateapp.model.raterepository.RateDatabase
 import com.example.rateapp.model.raterepository.api.RateApi
 import com.example.rateapp.model.raterepository.dao.RateDao
@@ -33,7 +33,7 @@ object Modules{
         PreferenceManager.getDefaultSharedPreferences(app.applicationContext)
 
     private val viewModelModule = module {
-        viewModel { RateListViewModel(get(), get() as RateDao, get(named("timePrefs")), get(), get()) }
+        viewModel { RateListViewModel(get(), get() as RateDao, get(named("timePrefs")), get(), get(named("timeCacheUtil"))) }
         viewModel { DetailsRateViewModel(get() as RateDao) }
     }
 
@@ -76,7 +76,7 @@ object Modules{
     }
 
     val timeCacheUtil = module {
-        single { TimeCacheUtil(get()) }
+        single(named("timeCacheUtil")) { TimeCacheUtil(get(named("timePrefs"))) }
     }
 
 

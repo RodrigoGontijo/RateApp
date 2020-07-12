@@ -1,11 +1,11 @@
 package com.example.rateapp.viewmodel
 
-import RateConstants.Companion.PREFS_TIME
-import RateConstants.Companion.REFRESH_TIME
+
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.rateapp.RateConstants.Companion.PREFS_TIME
 import com.example.rateapp.model.raterepository.RateModel
 import com.example.rateapp.model.raterepository.dao.RateDao
 import com.example.rateapp.model.raterepository.service.RateApiService
