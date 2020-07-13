@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/rateListFragment"
         android:name="com.example.rateapp.view.RateListFragment"
-        android:label="RateListFragment" >
+        android:label="Rate App">
         <action
             android:id="@+id/actionDetailFragment"
             app:destination="@+id/rateDetailsFragment"

@@ -26,7 +26,7 @@ class NotificationsHelper(val context: Context) {
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         val icon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_background)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setLargeIcon(icon)
             .setContentTitle("Rates retrieved")
             .setContentText("This notification has some content")
