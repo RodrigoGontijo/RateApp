@@ -24,6 +24,7 @@ fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable
     Glide.with(context)
         .setDefaultRequestOptions(options)
         .load(uri)
+        .placeholder(progressDrawable)
         .fitCenter()
         .into(this)
 }

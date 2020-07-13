@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,16 +18,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="2dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/white"
-            android:elevation="10dp"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="8dp">
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -36,26 +37,54 @@
                     android:id="@+id/place_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="center"
+                    android:imageUrl="@{rate.imagesRandom}"
                     android:maxHeight="150dp"
-                    android:imageUrl="@{rate.imagesRandom}" />
+                    android:scaleType="center" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/place_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/place_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{rate.name}"/>
+                    android:textSize="14sp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{rate.name}"
+                    android:textColor="@color/colorPrimary" />
 
-                <RatingBar
-                    android:id="@+id/ratingBar1"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/place_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_below="@+id/place_name"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@{rate.type}"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rating_bar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20sp"
+                    android:layout_below="@+id/place_type"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
                     android:numStars="5"
-                    android:rating="@{rate.review}"/>
+                    android:progressTint="#daa520"
+                    android:rating="@{rate.review}" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rating_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place_type"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@+id/rating_bar"
+                    android:text="@{String.valueOf(rate.review)}"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

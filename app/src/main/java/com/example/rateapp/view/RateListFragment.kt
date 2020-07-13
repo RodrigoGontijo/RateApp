@@ -96,23 +96,39 @@ class RateListFragment  : Fragment() {
     }
 
     private fun initImageBitmaps() {
-        mImageUrls.add("https://c1.staticflickr.com/5/4636/25316407448_de5fbf183d_o.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/4401993/pexels-photo-4401993.jpeg?cs=srgb&dl=black-concrete-building-4401993.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?cs=srgb&dl=architectural-design-architecture-ceiling-chairs-380768.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/qn7f9oqu7o501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?cs=srgb&dl=adult-business-computer-contemporary-380769.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/j6myfqglup501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?cs=srgb&dl=assorted-decors-with-brown-rack-inside-store-683039.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/0h2gm1ix6p501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?cs=srgb&dl=food-inside-display-chiller-1855214.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/2159065/pexels-photo-2159065.jpeg?cs=srgb&dl=people-in-cafeteria-2159065.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/glin0nwndo501.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/933964/pexels-photo-933964.jpeg?cs=srgb&dl=group-of-friends-hanging-out-933964.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.redd.it/obx4zydshg601.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?cs=srgb&dl=assorted-wine-bottles-1283219.jpg&fm=jpg")
 
-        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg")
+        mImageUrls.add("https://images.pexels.com/photos/1005639/pexels-photo-1005639.jpeg?cs=srgb&dl=two-person-in-bar-stools-1005639.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/1426620/pexels-photo-1426620.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
+
+        mImageUrls.add("https://images.pexels.com/photos/2835547/pexels-photo-2835547.jpeg?cs=srgb&dl=architectural-design-of-a-bar-2835547.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/1801106/pexels-photo-1801106.jpeg?cs=srgb&dl=colorful-indoor-lights-1801106.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/1378424/pexels-photo-1378424.jpeg?cs=srgb&dl=empty-room-1378424.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/247931/pexels-photo-247931.jpeg?cs=srgb&dl=chairs-and-tables-in-restaurant-247931.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?cs=srgb&dl=top-view-photo-of-restaurant-2253643.jpg&fm=jpg")
+
+        mImageUrls.add("https://images.pexels.com/photos/1128259/pexels-photo-1128259.jpeg?cs=srgb&dl=selective-focus-photography-of-assorted-brand-liquor-bottles-1128259.jpg&fm=jpg")
+
+
 
     }
 

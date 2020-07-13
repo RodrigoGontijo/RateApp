@@ -25,7 +25,8 @@ data class RateModel(
     @SerializedName("type")
     var type: String?,
 
-
+    @ColumnInfo(name = "imagesRandom")
+    @SerializedName("imagesRandom")
     var imagesRandom: String?
 )
 
