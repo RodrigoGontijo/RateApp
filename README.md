@@ -27,3 +27,9 @@ Stack que foi utilizada:
 
 
 ![alt text](https://github.com/RodrigoGontijo/RateApp/blob/master/app/device-2020-07-12-220621.png)
+
+
+![alt text](https://github.com/RodrigoGontijo/RateApp/blob/master/app/details-screenshot-1.png)
+
+
+![alt text](https://github.com/RodrigoGontijo/RateApp/blob/master/app/details-screenshot-2.png)
