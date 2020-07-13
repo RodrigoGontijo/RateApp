@@ -4,65 +4,213 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="rateDetail"
-            type="com.example.rateapp.model.raterepository.RateModel" />
+            type="com.example.rateapp.model.raterepository.RateDetailsModel" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
 
     </data>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.RateDetailsFragment">
+        android:layout_height="match_parent">
 
-<!--        <ImageView
-            android:id="@+id/rateImage"
-            android:layout_marginTop="4dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:src="@mipmap/ic_launcher"
-            android:imageUrl="@{rateDetail.imageUrl}"
-            android:scaleType="fitCenter"/>-->
+            android:layout_height="match_parent"
+            tools:context=".view.RateDetailsFragment">
 
-        <TextView
-            android:id="@+id/rateName"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@{rateDetail.name}"
-            style="@style/Title"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rateContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
 
-        <TextView
-            android:id="@+id/rateId"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/rateName"
-            android:text="@{rateDetail.id}"
-            style="@style/Text"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/rateImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:centerCropEnabled="@{true}"
+                    android:imageUrl="@{imageUrl}"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/rateReview"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/rateId"
-            android:text="@{String.valueOf(rateDetail.review)}"
-            style="@style/Text"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+                <RelativeLayout
+                    android:id="@+id/name_rating_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rateImage">
 
-        <TextView
-            android:id="@+id/rateType"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/rateReview"
-            android:text="@{rateDetail.type}"
-            style="@style/Text"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/rateName"
+                        style="@style/TitleRateDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@{rateDetail.name}" />
 
-    </RelativeLayout>
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/rating_bar"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20sp"
+                        android:layout_below="@+id/rateName"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:numStars="5"
+                        android:progressTint="@color/starsRatingColor"
+                        android:rating="@{rateDetail.review}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/rateReview"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rateName"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@+id/rating_bar"
+                        android:text="@{String.valueOf(rateDetail.review)}"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rateAboutTitle"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/about_details"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/name_rating_container" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rateAbout"
+                    style="@style/Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:paddingEnd="8dp"
+                    android:text="@{rateDetail.about}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rateAboutTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="dsidjisjdsjdisjdisjdisjdijsidjsidjsijdisjdisjdijsdijsijdsijdisjdisjdijsidjsdjsijdis" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/clock_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_clock_foreground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rateAbout" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rateSchedule"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toEndOf="@id/clock_image"
+                    app:layout_constraintTop_toBottomOf="@id/rateAbout"
+                    />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/telephone_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_telephone_foreground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rateSchedule" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rateTelephone"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{rateDetail.phone}"
+                    app:layout_constraintStart_toEndOf="@id/telephone_image"
+                    app:layout_constraintTop_toBottomOf="@id/rateSchedule" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/address_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_map_marker_foreground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rateTelephone" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rateAddress"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{rateDetail.adress}"
+                    app:layout_constraintStart_toEndOf="@id/telephone_image"
+                    app:layout_constraintTop_toBottomOf="@id/rateTelephone" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/listError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="An error occured"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/loadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

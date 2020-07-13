@@ -18,13 +18,13 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 import java.lang.NumberFormatException
 
-class RateListViewModel(private val rateApiService: RateApiService,
-                        private val rateDao: RateDao,
-                        private val timeSharedPreferences: SharedPreferences,
-                        private val notificationsHelper: NotificationsHelper,
-                        private val timeCacheUtil: TimeCacheUtil
-) : BaseViewModel(){
-
+class RateListViewModel(
+    private val rateApiService: RateApiService,
+    private val rateDao: RateDao,
+    private val timeSharedPreferences: SharedPreferences,
+    private val notificationsHelper: NotificationsHelper,
+    private val timeCacheUtil: TimeCacheUtil
+) : BaseViewModel() {
 
 
     val rates = MutableLiveData<RateListModel>()
@@ -33,19 +33,19 @@ class RateListViewModel(private val rateApiService: RateApiService,
 
     fun refresh() {
         timeCacheUtil.checkCacheDuration()
-        val updatedTime = timeSharedPreferences.getLong(PREFS_TIME,0)
-        if(updatedTime != null && updatedTime !=0L && System.nanoTime() - updatedTime < timeCacheUtil.getUpdateTime()){
+        val updatedTime = timeSharedPreferences.getLong(PREFS_TIME, 0)
+        if (updatedTime != null && updatedTime != 0L && System.nanoTime() - updatedTime < timeCacheUtil.getUpdateTime()) {
             fetchFromDatabase()
-        }else{
+        } else {
             fetchFromRemote()
         }
     }
 
-    fun refreshBypassCache(){
+    fun refreshBypassCache() {
         fetchFromRemote()
     }
 
-    private fun fetchFromDatabase(){
+    private fun fetchFromDatabase() {
         viewModelScope.launch {
             val rate = rateDao.getAllRates()
             ratesRetrieved(rate)
@@ -58,7 +58,7 @@ class RateListViewModel(private val rateApiService: RateApiService,
             rateApiService.getRateList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<RateListModel>(){
+                .subscribeWith(object : DisposableSingleObserver<RateListModel>() {
                     override fun onSuccess(rateList: RateListModel) {
                         storeRatesLocal(rateList)
                         notificationsHelper.createNotification()
@@ -85,19 +85,19 @@ class RateListViewModel(private val rateApiService: RateApiService,
         }
     }
 
-    private fun storeRatesLocal(list: RateListModel){
+    private fun storeRatesLocal(list: RateListModel) {
         viewModelScope.launch {
             rateDao.deleteAllRates()
             val result = list.rateListModel.toTypedArray().let { rateDao.insertAll(*it) }
             var i = 0
-            while(i<list.rateListModel.size){
+            while (i < list.rateListModel.size) {
                 list.rateListModel[i].id = result[i].toInt()
                 i++
             }
             ratesRetrieved(list.rateListModel)
         }
 
-        timeSharedPreferences.edit(commit = true){ putLong(PREFS_TIME, System.nanoTime()) }
+        timeSharedPreferences.edit(commit = true) { putLong(PREFS_TIME, System.nanoTime()) }
     }
 
 }

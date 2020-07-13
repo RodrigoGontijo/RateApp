@@ -13,5 +13,5 @@ interface RateApi {
     fun getRateList(): Single<RateListModel>
 
     @GET("locations/{id}")
-    fun getRateDetails(@Path("Id") customerId: Int): Single<RateDetailsModel>
+    fun getRateDetails(@Path("id") customerId: Int): Single<RateDetailsModel>
 }

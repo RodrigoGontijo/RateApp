@@ -24,7 +24,8 @@ class NotificationsHelper(val context: Context) {
         }
 
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-        val icon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_background)
+        val icon =
+            BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_background)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setLargeIcon(icon)
@@ -43,7 +44,7 @@ class NotificationsHelper(val context: Context) {
     }
 
     private fun createNotificationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = CHANNEL_ID
             val descriptionText = "Channel description"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
@@ -51,7 +52,8 @@ class NotificationsHelper(val context: Context) {
                 description = descriptionText
             }
 
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }

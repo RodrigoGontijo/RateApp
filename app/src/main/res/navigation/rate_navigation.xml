@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/rateListFragment"
         android:name="com.example.rateapp.view.RateListFragment"
-        android:label="Rate App">
+        android:label="Home">
         <action
             android:id="@+id/actionDetailFragment"
             app:destination="@+id/rateDetailsFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/rateDetailsFragment"
         android:name="com.example.rateapp.view.RateDetailsFragment"
-        android:label="RateDetailsFragment">
+        android:label="Details">
         <action
             android:id="@+id/actionListFragment"
             app:destination="@id/rateListFragment"
@@ -31,5 +31,10 @@
             android:name="rateId"
             android:defaultValue="0"
             app:argType="integer" />
+
+        <argument
+            android:name="imageUrl"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 </navigation>

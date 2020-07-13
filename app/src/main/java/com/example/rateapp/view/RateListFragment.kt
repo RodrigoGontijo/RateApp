@@ -16,13 +16,11 @@ import kotlinx.android.synthetic.main.fragment_rate_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class RateListFragment  : Fragment() {
+class RateListFragment : Fragment() {
 
     private val viewModel: RateListViewModel by viewModel()
     private val mImageUrls: ArrayList<String> = ArrayList()
     private val ratesListAdapter = RateListAdapter(arrayListOf())
-    private val staggeredGridLayoutManager = StaggeredGridLayoutManager(NUM_COLLUMS, LinearLayout.VERTICAL)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,12 +31,10 @@ class RateListFragment  : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
         viewModel.refresh()
 
         rateList.apply {
-            layoutManager = LinearLayoutManager(context)
-            layoutManager = staggeredGridLayoutManager
+            layoutManager = StaggeredGridLayoutManager(NUM_COLLUMS, LinearLayout.VERTICAL)
             adapter = ratesListAdapter
         }
 
@@ -58,12 +54,12 @@ class RateListFragment  : Fragment() {
         removeObservers()
     }
 
-    fun observeVielModel(){
+    fun observeVielModel() {
 
         viewModel.rates.observe(this, Observer {
             it?.let {
                 rateList.visibility = View.VISIBLE
-                it.rateListModel.forEach{
+                it.rateListModel.forEach {
                     it.imagesRandom = mImageUrls.random()
                 }
                 ratesListAdapter.updateRateList(it.rateListModel)
@@ -72,24 +68,24 @@ class RateListFragment  : Fragment() {
 
         viewModel.ratesLoadError.observe(this, Observer {
             it?.let {
-                listError.visibility = if(it) View.VISIBLE else View.GONE
+                listError.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
 
         viewModel.loading.observe(this, Observer {
             it?.let {
-                if(it){
+                if (it) {
                     loadingView.visibility = View.VISIBLE
                     listError.visibility = View.GONE
                     rateList.visibility = View.GONE
-                }else {
+                } else {
                     loadingView.visibility = View.GONE
                 }
             }
         })
     }
 
-    fun removeObservers(){
+    fun removeObservers() {
         viewModel.loading.removeObservers(this)
         viewModel.ratesLoadError.removeObservers(this)
         viewModel.rates.removeObservers(this)
@@ -127,7 +123,6 @@ class RateListFragment  : Fragment() {
         mImageUrls.add("https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?cs=srgb&dl=top-view-photo-of-restaurant-2253643.jpg&fm=jpg")
 
         mImageUrls.add("https://images.pexels.com/photos/1128259/pexels-photo-1128259.jpeg?cs=srgb&dl=selective-focus-photography-of-assorted-brand-liquor-bottles-1128259.jpg&fm=jpg")
-
 
 
     }
