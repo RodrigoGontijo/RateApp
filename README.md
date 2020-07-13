@@ -21,3 +21,10 @@ Stack que foi utilizada:
 - Android Notification
 - SharedPreferencesUtil
 - Navigation
+
+
+https://github.com/RodrigoGontijo/RateApp/blob/master/app/device-2020-07-12-220543.png
+
+
+
+https://github.com/RodrigoGontijo/RateApp/blob/master/app/device-2020-07-12-220621.png
